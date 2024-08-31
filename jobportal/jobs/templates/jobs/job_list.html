@@ -1,0 +1,18 @@
+<h1>Job Listings</h1>
+
+<form method="get">
+    <div>
+        {{ form.job_type.label_tag }} {{ form.job_type }}
+    </div>
+    <div>
+        {{ form.search_query.label_tag }} {{ form.search_query }}
+    </div>
+    <button type="submit">Filter</button>
+    <a href="{% url 'job_list' %}">Reset Filters</a>
+</form>
+
+<ul>
+    {% for job in jobs %}
+        <li><a href="{% url 'job_detail' job.id %}">{{ job.title }} ({{ job.get_job_type_display }})</a></li>
+    {% endfor %}
+</ul>
